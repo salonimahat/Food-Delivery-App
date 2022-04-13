@@ -1,0 +1,32 @@
+.warning{
+    text-align: center;
+    font-size: large;
+    margin: 0px;
+}
+.restaurant_image img{
+    width:50%;
+    height: 50%;
+}
+.button {
+  background-color: #808080;
+  -webkit-border-radius: 10px;
+  border-radius: 3px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+#datetime{
+ 	float: right;
+}
+#edit {
+   padding: 0px;
+  	float: right;
+}
+
+button:active {
+  box-shadow: 1px 1px 3px ;
+}

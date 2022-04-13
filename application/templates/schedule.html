@@ -1,0 +1,660 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+    Schedule {# Tab name #}
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='stylesheets/srch.css') }}">
+    {#        <link rel="stylesheet" type="text/css" href="static/stylesheets/srch.css">#}
+{% endblock %}
+
+{% block content %}
+
+{# Navigation #}
+<div id="navbar">
+    {# Demonstration warning #}
+<div class="warning">
+        SFSU Software Engineering Project<br>
+        CSC648-848, Spring 2021, Team02, For Demonstration Only
+</div>
+<nav class="navbar navbar-custom">
+    <div class="container">
+        <div style='float:left;'>
+        <a class="navbar-brand" href="/">&emsp;Gator Grub<img src="static/image/gatorlogo.jpg" style="float:left;" width="20" height="20" alt="sfsu-logo"></a>
+        <div class="navbar-header" style='float:right;'>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+            </div>
+        <div class="collapse navbar-collapse" style='float:right;'>
+            <ul class="nav navbar-nav ms-auto">
+                <li class="nav-link"><a style="color:gold;" href="#">About</a></li>
+                <li class="nav-link"><a style="color:gold;" href=#>Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav> {# end of navigation bar #}
+</div>
+<body class="template">
+<center>
+  <h1 class="marketing-quote">Schedule</h1>
+</center>
+
+  <div style='float:left;'>
+      <div style='float:left;'><br>&emsp;
+          <input type="button" value="Orders" class="button_active" onclick="location.href='orders';"/><br><br>
+          &emsp;<input type="button" value="Schedule" class="button_active" onclick="location.href='schedule';"/>
+          </div>
+      &emsp;&emsp;
+      &emsp;&emsp;&emsp;<div style='float:right;'>
+     <STRONG>Monday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q1" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q1" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+      <STRONG>Tuesday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q2" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q2" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+           <STRONG>Wednesday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q3" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q3" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+           <STRONG>Thursday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q4" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q4" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+           <STRONG>Friday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q5" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q5" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+           <STRONG>Saturday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q6" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q6" VALUE="unavailable">&emsp;Unavailable
+      <br><br><br><br>
+                 <STRONG>Sunday&emsp;</STRONG>
+<INPUT TYPE="radio" NAME="q7" VALUE="available">&emsp;Available&emsp;
+<INPUT TYPE="radio" NAME="q7" VALUE="unavailable">&emsp;Unavailable
+      </div>
+  </div>
+
+    <div style='float:right;'>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                 <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+        <br><br><br><br>
+                                 <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>
+         <STRONG>&emsp;&emsp;to&emsp;&emsp;</STRONG>
+         <select>
+            <option value="time">&emsp;Select Time&emsp;&emsp;</option>
+            <option value="twelve">12:00 A.M.</option>
+            <option value="one">1:00 A.M.</option>
+            <option value="two">2:00 A.M.</option>
+            <option value="three">3:00 A.M.</option>
+            <option value="four">4:00 A.M.</option>
+            <option value="five">5:00 A.M.</option>
+            <option value="six">6:00 A.M.</option>
+            <option value="seven">7:00 A.M.</option>
+            <option value="eight">8:00 A.M.</option>
+            <option value="nine">9:00 A.M.</option>
+            <option value="ten">10:00 A.M.</option>
+            <option value="eleven">11:00 A.M.</option>
+            <option value="newtwelve">12:00 P.M.</option>
+            <option value="newone">1:00 P.M.</option>
+            <option value="newtwo">2:00 P.M.</option>
+            <option value="newthree">3:00 P.M.</option>
+            <option value="newfour">4:00 P.M.</option>
+            <option value="newfive">5:00 P.M.</option>
+            <option value="newsix">6:00 P.M.</option>
+            <option value="newseven">7:00 P.M.</option>
+            <option value="neweight">8:00 P.M.</option>
+            <option value="newnine">9:00 P.M.</option>
+            <option value="newten">10:00 P.M.</option>
+            <option value="neweleven">11:00 P.M.</option>
+        </select>&emsp;&emsp;&emsp;&emsp;&emsp;
+  </div>
+<br><br>
+</body>
+ <style>
+         .template{
+    background-color: rgb(246, 223, 154);
+    }
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  width: 100%;
+    }
+    .warning{
+    background-color: white;
+    }
+    .navbar-brand{
+        color: gold;
+    }
+    .navbar-custom {
+    background-color: rgba(83,36,128,255);
+    }
+    .segment{
+        margin-top:10px;
+    }
+    .form-select{
+    height: 25px;
+    }
+    .click{
+    height: 25px;
+    }
+.special-edit input {
+  font-family: 'FontAwesome';
+  font-size: 2rem;
+  padding: .5rem 0 .5rem 2.5rem;
+  width: 100%;
+  border: none;
+  border-bottom: transparent 3px solid;
+  outline: 0;
+  transition: .35s ease;
+}
+.special-edit input:hover, .special-edit input:focus {
+  background-color: #f1f1f1;
+  border-bottom: #ddd 3px dotted;
+}
+.special-edit:after {
+  font-family: 'FontAwesome';
+  content: '\f044';
+  position: absolute;
+  top: 1rem;
+  left: .5rem;
+  color: gray;
+  font-size: 1.5rem;
+}
+.wrapper{
+  width:100%;
+}
+@media(max-width:992px){
+ .wrapper{
+  width:100%;
+}
+}
+.panel-heading {
+  padding: 0;
+	border:0;
+}
+.panel-title>a, .panel-title>a:active{
+	display:block;
+	padding:15px;
+  color:#555;
+  font-size:16px;
+  font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+  word-spacing:3px;
+	text-decoration:none;
+}
+.panel-heading  a:before {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+   transition: all 0.5s;
+}
+.panel-heading.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.wrapper{
+  width:100%;
+}
+@media(max-width:992px){
+ .wrapper{
+  width:100%;
+}
+}
+.Center{
+            position: fixed;
+            left: 50%;
+            margin-left: -100px;
+        }
+.panel-heading {
+  padding: 0;
+	border:0;
+}
+.panel-title>a, .panel-title>a:active{
+	display:block;
+	padding:15px;
+  color:#555;
+  font-size:16px;
+  font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+  word-spacing:3px;
+	text-decoration:none;
+}
+.panel-heading  a:before {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+   transition: all 0.5s;
+}
+.panel-heading.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+         </style>
+         <script>
+              // When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the navbar
+var navbar = document.getElementById("navbar");
+
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("restaurantImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+              $('.panel-collapse').on('show.bs.collapse', function () {
+    $(this).siblings('.panel-heading').addClass('active');
+  });
+
+  $('.panel-collapse').on('hide.bs.collapse', function () {
+    $(this).siblings('.panel-heading').removeClass('active');
+  });
+              $('.panel-collapse').on('show.bs.collapse', function () {
+    $(this).siblings('.panel-heading').addClass('active');
+  });
+
+  $('.panel-collapse').on('hide.bs.collapse', function () {
+    $(this).siblings('.panel-heading').removeClass('active');
+  });
+         </script>
+{% endblock %}

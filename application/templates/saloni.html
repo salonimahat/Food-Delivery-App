@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>About Saloni</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/sal.css') }}">
+</head>
+<body>
+{% block content %}
+    <div id=about class="site-section">
+        <br>
+        <center>
+            <h1 style="color:black; font-size:30px;">Saloni Mahat</h1>
+        </center>
+        <div class="image">
+            <img src="static/image/picture.jpg" alt="picture" style="border-radius: 50%; align-item: center;">
+
+        </div>
+
+        <div class="row">
+            <div class="text-center">
+                <center>
+                    <p class="salp" style="color:black; font-size:22px;">
+                        Hello! I am Saloni Mahat born and raised in Kathmandu Nepal
+                        also known as Himalayas. I was always fascinated by technology
+                        which is why I decided to flew 7,907 miles away from my home
+                        country to pursue my dreams. It's my second last semester here
+                        in SFSU. I don't have any experience in this industry. I also
+                        don't have any particular hobbies so during my free time I usually
+                        just like to take a nap.
+                    </p>
+                </center>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

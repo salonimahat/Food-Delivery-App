@@ -1,0 +1,246 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Menu {# Tab name #}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('.static', filename='stylesheets/srch.css') }}">
+{#
+<link rel="stylesheet" type="text/css" href="static/stylesheets/srch.css">#}
+{% endblock %}
+
+{% block content %}
+<body class="template">
+{# Navigation #}
+<div id="navbar">
+    {# Demonstration warning #}
+    <div class="warning">
+        SFSU Software Engineering Project<br>
+        CSC648-848, Spring 2021, Team02, For Demonstration Only
+    </div>
+    <nav class="navbar navbar-custom">
+        <div class="container">
+            <div style='float:left;'>
+                <a class="navbar-brand" href="/">&emsp;Gator Grub<img src="static/image/gatorlogo.jpg"
+                                                                      style="float:left;" width="20" height="20"
+                                                                      alt="sfsu-logo"></a>
+                <div class="navbar-header" style='float:right;'>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" style='float:right;'>
+                <ul class="nav navbar-nav ms-auto">
+                    <li class="nav-link"><a style="color:gold;" href="{{url_for('about')}}">About</a></li>
+                    <li class="nav-link"><a style="color:gold;" href="{{url_for('restaurantinfo', usr=session['username'])}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                        <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+                        </svg>
+                    </a></li>
+                    <li class="nav-link"><a style="color:gold;" href="/logout">Logout</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    {# end of navigation bar #}
+</div>
+
+<h1>{{ msg }}</h1>
+<div style='float:left;'>
+    <a href="{{url_for('restaurantinfo', usr=session['username'])}}">View Restaurant Info</a><br>
+    <a href="{{url_for('menu', restID=restID)}}">Menu</a><br>
+    <a href="{{url_for('restaurantOrders', restID=restID)}}">Orders</a><br>
+    <a href="{{url_for('editRestaurant', restID=restID)}}">Edit Restaurant Info</a><br>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+    <!-- Adding Items to Menu Table -->
+    <center><h3>Add New Items</h3></center>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Item Name:</th>
+            <th scope="col">
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                      rel="stylesheet"/>
+                <!--      get state here-->
+                <div class="special-edit">
+                    <input type="text" name="name" class="template" placeholder="Item Name"/>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="col">Item description:</th>
+            <th scope="col">
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                      rel="stylesheet"/>
+
+                <div class="special-edit">
+                    <!--    get street name from here-->
+                    <input type="text" name="description" placeholder="Item Description"/>
+                </div>
+            </th>
+        </tr>
+        <tr>
+
+        <tr>
+            <th scope="col">Price:</th>
+            <th scope="col">
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                      rel="stylesheet"/>
+                <div class="special-edit">
+                    <input type="text" name="price" class="template" placeholder="13.55 (numbers only please)"/>
+                </div>
+            </th>
+        </tr>
+        <br><br><br>
+        <button type="submit">Submit Changes</button>
+</tbody>
+</table>
+
+<br><br>
+
+<!-- TABLE FOR MENU ITEMS -->
+<center>
+    <h3>Menu Items</h3>
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for row in menu %}
+    <tr>
+      <th scope="row">{{ row[2] }}</th>
+      <td>{{ row[3] }}</td>
+      <td>{{ row[4] }}</td>
+      <td><button type="submit" name="remove-item" value="{{row[0]}}">Delete</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+    </center>
+</form>
+</body>
+
+<style>
+    .template {
+        background-color: rgb(246, 223, 154);
+    }
+
+    /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+    .sticky {
+        position: fixed;
+        width: 100%;
+    }
+
+    .warning {
+        background-color: white;
+    }
+
+    .navbar-brand {
+        color: gold;
+    }
+
+    .navbar-custom {
+        background-color: rgba(83, 36, 128, 255);
+    }
+
+    .segment {
+        margin-top: 10px;
+    }
+
+    .form-select {
+        height: 25px;
+    }
+
+    .click {
+        height: 25px;
+    }
+
+    .special-edit input {
+        font-family: 'FontAwesome';
+        font-size: 2rem;
+        padding: .5rem 0 .5rem 2.5rem;
+        width: 100%;
+        border: none;
+        border-bottom: transparent 3px solid;
+        outline: 0;
+        transition: .35s ease;
+    }
+
+    .special-edit input:hover, .special-edit input:focus {
+        background-color: #f1f1f1;
+        border-bottom: #ddd 3px dotted;
+    }
+
+    .special-edit:after {
+        font-family: 'FontAwesome';
+        content: '\f044';
+        position: absolute;
+        top: 1rem;
+        left: .5rem;
+        color: gray;
+        font-size: 1.5rem;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    @media (max-width: 992px) {
+        .wrapper {
+            width: 100%;
+        }
+    }
+
+    .panel-heading {
+        padding: 0;
+        border: 0;
+    }
+
+    .panel-title > a, .panel-title > a:active {
+        display: block;
+        padding: 15px;
+        color: #555;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        word-spacing: 3px;
+        text-decoration: none;
+    }
+
+    .panel-heading a:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e114";
+        float: right;
+        transition: all 0.5s;
+    }
+
+    .panel-heading.active a:before {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .template{
+    background-color: rgb(246, 223, 154);
+    }
+</style>
+
+{% endblock %}
